@@ -6,13 +6,15 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
+from src.models.document import Document
+
 
 class PDFLoader:
     """Carga y extrae texto de archivos PDF."""
 
-    def read_pdf(self, pdf_path: Path) -> str:
+    def read_pdf(self, pdf_path: Path) -> Document:
         """
-        Lee un archivo PDF y devuelve todo su contenido como texto.
+        Lee un archivo PDF y devuelve un objeto Document.
         """
 
         reader = PdfReader(pdf_path)
@@ -25,4 +27,8 @@ class PDFLoader:
             if page_text:
                 text += page_text + "\n"
 
-        return text
+        return Document(
+            name=pdf_path.name,
+            content=text,
+            doc_type="pdf"
+        )

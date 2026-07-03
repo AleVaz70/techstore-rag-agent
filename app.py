@@ -14,16 +14,16 @@ def main():
 
     for pdf in pdfs:
 
-        text = pdf_loader.read_pdf(pdf)
+        document = pdf_loader.read_pdf(pdf)
 
-        print(f"📄 {pdf.name}")
-        print(f"Caracteres extraídos: {len(text)}")
-        print(f"Primeros 250 caracteres:\n")
+        print(f"📄 {document.name}")
+        print(f"Caracteres extraídos: {len(document.content)}")
+        print("Primeros 250 caracteres:\n")
 
-        print(text[:250])
+        print(document.content[:250])
 
         print("-" * 60)
-            
+
 
     csvs = document_loader.get_csv_files()
 
@@ -31,16 +31,13 @@ def main():
 
     for csv in csvs:
 
-        df = csv_loader.read_csv(csv)
+        document = csv_loader.read_csv(csv)
 
-        print(f"📄 {csv.name}")
-        print(f"Cantidad de productos: {len(df)}")
+        print(f"📄 {document.name}")
+        print("Primeros 500 caracteres:\n")
 
-        print("\nPrimeros 5 registros:\n")
-
-        print(df.head())
+        print(document.content[:500])
 
         print("-" * 60)
-
 if __name__ == "__main__":
     main()

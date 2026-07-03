@@ -6,12 +6,21 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.models.document import Document
+
 
 class CSVLoader:
-    """Carga archivos CSV utilizando pandas."""
+    """Carga archivos CSV."""
 
-    def read_csv(self, csv_path: Path) -> pd.DataFrame:
+    def read_csv(self, csv_path: Path) -> Document:
         """
-        Lee un archivo CSV y devuelve un DataFrame.
+        Lee un CSV y devuelve un objeto Document.
         """
-        return pd.read_csv(csv_path)
+
+        df = pd.read_csv(csv_path)
+
+        return Document(
+            name=csv_path.name,
+            content=df.to_string(index=False),
+            doc_type="csv"
+        )
