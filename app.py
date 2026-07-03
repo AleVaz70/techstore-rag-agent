@@ -1,21 +1,26 @@
 from src.loaders.document_loader import DocumentLoader
+from src.loaders.pdf_loader import PDFLoader
 
 
 def main():
-    loader = DocumentLoader()
+    document_loader = DocumentLoader()
+    pdf_loader = PDFLoader()
 
-    pdfs = loader.get_pdf_files()
-    csvs = loader.get_csv_files()
+    pdfs = document_loader.get_pdf_files()
 
-    print("📂 Buscando documentos...\n")
+    print("📂 Leyendo documentos...\n")
 
     for pdf in pdfs:
-        print(f"✅ PDF: {pdf.name}")
 
-    for csv in csvs:
-        print(f"✅ CSV: {csv.name}")
+        text = pdf_loader.read_pdf(pdf)
 
-    print(f"\nTotal de documentos encontrados: {len(pdfs) + len(csvs)}")
+        print(f"📄 {pdf.name}")
+        print(f"Caracteres extraídos: {len(text)}")
+        print(f"Primeros 250 caracteres:\n")
+
+        print(text[:250])
+
+        print("-" * 60)
 
 
 if __name__ == "__main__":
