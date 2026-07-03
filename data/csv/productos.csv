@@ -1,0 +1,26 @@
+id,nombre,categoria,precio,stock
+1,Notebook TechBook 14,Informática,1250000,15
+2,Notebook TechBook 15 Pro,Informática,1680000,8
+3,Mouse Gamer RGB,Periféricos,45000,42
+4,Mouse Inalámbrico Silent,Periféricos,32000,35
+5,Teclado Mecánico Pro,Periféricos,89000,18
+6,Teclado Compact Wireless,Periféricos,61000,20
+7,Monitor 24 IPS,Monitores,275000,14
+8,Monitor 27 IPS,Monitores,380000,12
+9,SSD NVMe 1TB,Almacenamiento,140000,26
+10,SSD SATA 500GB,Almacenamiento,78000,30
+11,Disco Externo 2TB,Almacenamiento,132000,10
+12,Auriculares Bluetooth,Audio,72000,30
+13,Auriculares Gamer 7.1,Audio,119000,16
+14,Parlante Bluetooth Mini,Audio,54000,22
+15,Webcam Full HD,Accesorios,56000,20
+16,Hub USB-C 7 en 1,Accesorios,39000,35
+17,Cargador USB-C 65W,Accesorios,47000,27
+18,Base Refrigerante Notebook,Accesorios,35000,18
+19,Silla Gamer,Mobiliario,510000,8
+20,Escritorio Gamer,Mobiliario,430000,6
+21,Impresora Multifunción,Impresión,285000,9
+22,Tinta Negra XL,Impresión,29000,40
+23,Tinta Color XL,Impresión,31000,34
+24,Cámara de Seguridad WiFi,Hogar Inteligente,96000,17
+25,Smart Plug WiFi,Hogar Inteligente,27000,45
