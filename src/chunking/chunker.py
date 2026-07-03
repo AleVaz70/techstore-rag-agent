@@ -1,11 +1,14 @@
 """
-Divide documentos en fragmentos.
+Divide documentos en fragmentos (chunks).
 """
 
 
 class Chunker:
+    """
+    Divide un texto en fragmentos con solapamiento.
+    """
 
-    def split(self, text: str, chunk_size=500, overlap=50):
+    def split(self, text: str, chunk_size: int = 500, overlap: int = 50):
 
         chunks = []
 
