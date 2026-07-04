@@ -51,3 +51,9 @@ class VectorStore:
             )
 
         self.db.add_documents(langchain_docs)
+
+    def search(self, query: str, k: int = 3):
+        """
+        Busca los k fragmentos más relevantes para la consulta.
+        """
+        return self.db.similarity_search(query, k=k)
