@@ -2,24 +2,28 @@
 Divide documentos en fragmentos (chunks).
 """
 
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 
 class Chunker:
     """
-    Divide un texto en fragmentos con solapamiento.
+    Divide un texto utilizando el separador de LangChain.
     """
 
-    def split(self, text: str, chunk_size: int = 500, overlap: int = 50):
+    def __init__(self):
 
-        chunks = []
+        self.splitter = RecursiveCharacterTextSplitter(
+            chunk_size=700,
+            chunk_overlap=100,
+            separators=[
+                "\n\n",
+                "\n",
+                ". ",
+                " ",
+                ""
+            ]
+        )
 
-        start = 0
+    def split(self, text: str):
 
-        while start < len(text):
-
-            end = start + chunk_size
-
-            chunks.append(text[start:end])
-
-            start += chunk_size - overlap
-
-        return chunks
+        return self.splitter.split_text(text)

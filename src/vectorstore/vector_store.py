@@ -18,13 +18,7 @@ class VectorStore:
         persist_directory = "data/chroma_db"
 
         client = chromadb.PersistentClient(path=persist_directory)
-
-        try:
-            client.delete_collection("techstore")
-        except Exception:
-            # La colección no existe todavía
-            pass
-
+        
         self.db = Chroma(
             client=client,
             collection_name="techstore",
@@ -57,3 +51,16 @@ class VectorStore:
         Busca los k fragmentos más relevantes para la consulta.
         """
         return self.db.similarity_search(query, k=k)
+    
+    def reset(self):
+        """
+         Elimina todos los documentos de la colección.
+        """
+
+        self.db.delete_collection()
+
+        self.db = Chroma(
+            client=chromadb.PersistentClient(path="data/chroma_db"),
+            collection_name="techstore",
+            embedding_function=self.embeddings,
+        )

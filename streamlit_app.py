@@ -1,0 +1,133 @@
+import streamlit as st
+
+from src.vectorstore.vector_store import VectorStore
+from src.rag.retriever import Retriever
+from src.rag.generator import Generator
+
+
+# --------------------------------------------------
+# Configuración de la página
+# --------------------------------------------------
+
+st.set_page_config(
+    page_title="TechStore RAG",
+    layout="centered",
+)
+
+
+def load_css():
+    with open("assets/style.css", encoding="utf-8") as f:
+        st.markdown(
+            f"<style>{f.read()}</style>",
+            unsafe_allow_html=True,
+        )
+
+
+load_css()
+
+
+# --------------------------------------------------
+# Carga de componentes
+# --------------------------------------------------
+
+@st.cache_resource
+def load_components():
+    vector_store = VectorStore()
+    retriever = Retriever(vector_store)
+    generator = Generator()
+
+    return retriever, generator
+
+
+retriever, generator = load_components()
+
+
+# --------------------------------------------------
+# Encabezado
+# --------------------------------------------------
+
+st.markdown(
+    "<h1 class='main-title'>TechStore</h1>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<div class='subtitle'>Asistente Inteligente para Documentación</div>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<div class='description'>Consultá rápidamente la información disponible en la documentación interna de <b>TechStore</b>.</div>",
+    unsafe_allow_html=True,
+)
+
+# --------------------------------------------------
+# Consulta
+# --------------------------------------------------
+
+if "question" not in st.session_state:
+    st.session_state.question = ""
+
+question = st.text_input(
+    "Escribí tu pregunta:",
+    key="question",
+    placeholder="Ej.: Cuánto tarda un reembolso",
+)
+
+
+consultar = st.button(
+    "🔎 Consultar",
+    use_container_width=True,
+)
+
+st.markdown("Consultas frecuentes")
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    if st.button("💳 Métodos de pago", use_container_width=True):
+        st.session_state.question = "Qué métodos de pago acepta TechStore"
+        st.rerun()
+
+    if st.button("📦 Envíos", use_container_width=True):
+        st.session_state.question = "Cómo funcionan los envíos"
+        st.rerun()
+
+with col2:
+
+    if st.button("🔄 Reembolsos", use_container_width=True):
+        st.session_state.question = "Cuánto tarda un reembolso"
+        st.rerun()
+
+    if st.button("🛡️ Garantía", use_container_width=True):
+        st.session_state.question = "Cómo funciona la garantía"
+        st.rerun()
+
+# --------------------------------------------------
+# Respuesta
+# --------------------------------------------------
+
+if consultar:
+
+    question = st.session_state.question
+
+    if not question.strip():
+
+        st.warning("⚠️ Ingresá una pregunta.")
+
+    else:
+
+        with st.spinner("Consultando la documentación..."):
+
+            context = retriever.build_context(question)
+            answer = generator.generate(question, context)
+
+        
+        with st.container(border=True):
+
+            st.subheader("📄 Respuesta")
+
+            st.markdown(answer)
+
+    
