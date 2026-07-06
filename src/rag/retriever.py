@@ -41,11 +41,15 @@ class Retriever:
         parts = []
 
         for result in results:
+
+            source = result.metadata.get("source", "")
+            source = source.replace(".pdf", "").replace("_", " ").title()
+
             parts.append(
-                f"Documento: {result.metadata.get('source')}\n"
-                f"Tipo: {result.metadata.get('type')}\n"
+                f"Documento: {source}\n"
+                f"Tipo: {result.metadata.get('type').upper()}\n"
                 f"Fragmento:\n{result.page_content}\n"
                 f"{'-'*50}\n"
             )
-
+            
         return "\n".join(parts)

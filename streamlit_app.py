@@ -62,6 +62,48 @@ st.markdown(
 )
 
 # --------------------------------------------------
+# Consultas frecuentes
+# --------------------------------------------------
+
+if "consultar_automatico" not in st.session_state:
+    st.session_state.consultar_automatico = False
+
+st.markdown("### Consultas frecuentes")
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    if st.button("💳 Métodos de pago", use_container_width=True):
+        st.session_state.question = "Qué métodos de pago acepta TechStore"
+        st.session_state.consultar_automatico = True
+        st.rerun()
+
+    if st.button("📦 Envíos", use_container_width=True):
+        st.session_state.question = "Cómo funcionan los envíos"
+        st.session_state.consultar_automatico = True
+        st.rerun()
+
+with col2:
+
+    if st.button("🔄 Reembolsos", use_container_width=True):
+        st.session_state.question = "Cuánto tarda un reembolso"
+        st.session_state.consultar_automatico = True
+        st.rerun()
+
+    if st.button("🛡️ Garantía", use_container_width=True):
+        st.session_state.question = "Cómo funciona la garantía"
+        st.session_state.consultar_automatico = True
+        st.rerun()
+
+# --------------------------------------------------
+# Respuesta
+# --------------------------------------------------
+
+response_placeholder = st.container()
+
+
+# --------------------------------------------------
 # Consulta
 # --------------------------------------------------
 
@@ -74,41 +116,17 @@ question = st.text_input(
     placeholder="Ej.: Cuánto tarda un reembolso",
 )
 
-
 consultar = st.button(
     "🔎 Consultar",
     use_container_width=True,
 )
 
-st.markdown("Consultas frecuentes")
-
-col1, col2 = st.columns(2)
-
-with col1:
-
-    if st.button("💳 Métodos de pago", use_container_width=True):
-        st.session_state.question = "Qué métodos de pago acepta TechStore"
-        st.rerun()
-
-    if st.button("📦 Envíos", use_container_width=True):
-        st.session_state.question = "Cómo funcionan los envíos"
-        st.rerun()
-
-with col2:
-
-    if st.button("🔄 Reembolsos", use_container_width=True):
-        st.session_state.question = "Cuánto tarda un reembolso"
-        st.rerun()
-
-    if st.button("🛡️ Garantía", use_container_width=True):
-        st.session_state.question = "Cómo funciona la garantía"
-        st.rerun()
 
 # --------------------------------------------------
 # Respuesta
 # --------------------------------------------------
 
-if consultar:
+if consultar or st.session_state.consultar_automatico:
 
     question = st.session_state.question
 
@@ -123,11 +141,18 @@ if consultar:
             context = retriever.build_context(question)
             answer = generator.generate(question, context)
 
-        
-        with st.container(border=True):
+        st.session_state.consultar_automatico = False
 
-            st.subheader("📄 Respuesta")
+        with response_placeholder:
 
-            st.markdown(answer)
+            with st.container(border=True):
 
-    
+                 st.caption("Consulta")
+
+                 st.markdown(f"**{question}**")
+
+                 st.divider()
+
+                 st.subheader("Respuesta")
+
+                 st.markdown(answer)

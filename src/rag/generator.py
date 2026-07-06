@@ -21,7 +21,6 @@ class Generator:
             )
 
         self.client = genai.Client(api_key=api_key)
-
         self.model = "gemini-2.5-flash"
 
     def generate(self, question: str, context: str) -> str:
@@ -29,13 +28,24 @@ class Generator:
         prompt = f"""
 Eres un asistente de TechStore.
 
-Responde únicamente utilizando la información del contexto.
+Responde únicamente utilizando la información proporcionada en el contexto.
 
 Si la respuesta no aparece en el contexto responde exactamente:
 
-"No encontré esa información en los documentos disponibles."
+"No encontré información suficiente en la documentación disponible para responder esa consulta."
 
-Al finalizar la respuesta indica los documentos utilizados.
+Instrucciones importantes:
+- No inventes información.
+- No agregues conocimientos externos.
+Al finalizar la respuesta escribe exactamente este formato:
+
+Documentos utilizados:
+- Nombre del documento
+
+Utiliza únicamente el nombre del documento, sin la extensión ".pdf".
+Escribe "Pagos", "Envíos", "Garantía" o "Devoluciones" según corresponda.
+Deja una línea en blanco antes de "Documentos utilizados:".
+
 
 Contexto:
 
