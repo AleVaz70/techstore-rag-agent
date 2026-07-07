@@ -10,7 +10,8 @@ from src.rag.generator import Generator
 # --------------------------------------------------
 
 st.set_page_config(
-    page_title="TechStore RAG",
+    page_title="TechStore",
+    page_icon="assets/logo.svg",
     layout="centered",
 )
 
@@ -147,11 +148,7 @@ if consultar or st.session_state.consultar_automatico:
 
             with st.container(border=True):
 
-                 st.caption("Consulta")
-
-                 st.markdown(f"**{question}**")
-
-                 st.divider()
+                 st.markdown(f"**Consulta:** {question}")
 
                  st.subheader("Respuesta")
 

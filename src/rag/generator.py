@@ -37,6 +37,7 @@ Si la respuesta no aparece en el contexto responde exactamente:
 Instrucciones importantes:
 - No inventes información.
 - No agregues conocimientos externos.
+
 Al finalizar la respuesta escribe exactamente este formato:
 
 Documentos utilizados:
@@ -45,7 +46,6 @@ Documentos utilizados:
 Utiliza únicamente el nombre del documento, sin la extensión ".pdf".
 Escribe "Pagos", "Envíos", "Garantía" o "Devoluciones" según corresponda.
 Deja una línea en blanco antes de "Documentos utilizados:".
-
 
 Contexto:
 
@@ -56,9 +56,28 @@ Pregunta:
 {question}
 """
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-        )
+        try:
 
-        return response.text
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+            )
+
+            return response.text
+
+        except Exception as error:
+            print("ENTRÉ AL EXCEPT")
+            error_message = str(error)
+
+            if "RESOURCE_EXHAUSTED" in error_message or "429" in error_message:
+
+                return (
+                    "⚠️ **Límite de consultas alcanzado.**\n\n"
+                    "La API de Gemini no está disponible en este momento porque "
+                    "se alcanzó la cuota permitida. Intentá nuevamente más tarde."
+                )
+
+            return (
+                "⚠️ **Ocurrió un error al consultar Gemini.**\n\n"
+                "Intentá nuevamente en unos minutos."
+            )
