@@ -28,6 +28,33 @@ Desarrollar un asistente capaz de:
 - Respuestas basadas únicamente en la documentación disponible.
 - Interfaz web desarrollada con Streamlit.
 
+## Arquitectura
+
+El proyecto sigue una arquitectura RAG (Retrieval-Augmented Generation):
+
+1. El usuario realiza una consulta desde la interfaz web.
+2. El Retriever busca los fragmentos más relevantes en ChromaDB.
+3. Los documentos recuperados se utilizan como contexto.
+4. Gemini genera una respuesta basada exclusivamente en dicho contexto.
+5. La respuesta se muestra junto con los documentos utilizados como referencia.
+
+## Estructura del proyecto
+
+```
+TechStore-RAG/
+│
+├── assets/                 # Estilos e imágenes
+├── data/                   # Documentos de TechStore
+├── src/
+│   ├── rag/
+│   ├── vectorstore/
+│   └── utils/
+├── streamlit_app.py
+├── index_documents.py
+├── requirements.txt
+└── README.md
+```
+
 ## Tecnologías utilizadas
 
 - Python 3.11
@@ -77,6 +104,16 @@ pip install -r requirements.txt
 ```text
 GEMINI_API_KEY=tu_api_key
 ```
+
+## Ejecución
+
+Una vez instaladas las dependencias y configurada la API Key, iniciar la aplicación con:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Luego abrir el navegador en la dirección indicada por Streamlit (generalmente http://localhost:8501).
 
 ## Ejemplos de consultas
 
