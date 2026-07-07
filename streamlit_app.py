@@ -111,17 +111,18 @@ response_placeholder = st.container()
 if "question" not in st.session_state:
     st.session_state.question = ""
 
-question = st.text_input(
-    "Escribí tu pregunta:",
-    key="question",
-    placeholder="Ej.: Cuánto tarda un reembolso",
-)
+with st.form("consulta_form"):
 
-consultar = st.button(
-    "🔎 Consultar",
-    use_container_width=True,
-)
+    question = st.text_input(
+        "Escribí tu pregunta:",
+        key="question",
+        placeholder="Ej.: Cuánto tarda un reembolso",
+    )
 
+    consultar = st.form_submit_button(
+        "🔎 Consultar",
+        use_container_width=True,
+    )
 
 # --------------------------------------------------
 # Respuesta
@@ -139,8 +140,15 @@ if consultar or st.session_state.consultar_automatico:
 
         with st.spinner("Consultando la documentación..."):
 
-            context = retriever.build_context(question)
-            answer = generator.generate(question, context)
+            try:
+                context = retriever.build_context(question)
+                answer = generator.generate(question, context)
+
+            except Exception:
+                answer = (
+                    "⚠️ **No fue posible obtener una respuesta en este momento.**\n\n"
+                    "Intentá nuevamente más tarde."
+                )
 
         st.session_state.consultar_automatico = False
 

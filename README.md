@@ -17,7 +17,7 @@ Desarrollar un asistente capaz de:
 
 ## Estado del proyecto
 
-🚧 En desarrollo
+Proyecto funcional. Actualmente en etapa de documentación final y despliegue.
 
 ## Características
 
