@@ -17,7 +17,7 @@ Desarrollar un asistente capaz de:
 
 ## Estado del proyecto
 
-Proyecto funcional. Actualmente en etapa de documentación final y despliegue.
+Proyecto finalizado. Actualmente disponible para su despliegue y publicación.
 
 ## Características
 
@@ -122,3 +122,17 @@ Luego abrir el navegador en la dirección indicada por Streamlit (generalmente h
 - ¿Cómo funcionan los envíos?
 - ¿Cómo funciona la garantía?
 - ¿Qué productos no pueden devolverse?
+
+## Capturas de pantalla
+
+### Pantalla principal
+
+![Pantalla principal](assets/screenshots/home.png)
+
+### Consulta realizada
+
+![Consulta realizada](assets/screenshots/consulta.png)
+
+## Autor
+
+Proyecto desarrollado por **Alejandra Vazquez** para el **Challenge Alura Agentes 2026**.
