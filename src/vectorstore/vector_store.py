@@ -64,3 +64,9 @@ class VectorStore:
             collection_name="techstore",
             embedding_function=self.embeddings,
         )
+
+    def is_empty(self):
+        """
+        Indica si la colección está vacía.
+        """
+        return self.db._collection.count() == 0

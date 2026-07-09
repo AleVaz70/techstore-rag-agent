@@ -3,6 +3,7 @@ import streamlit as st
 from src.vectorstore.vector_store import VectorStore
 from src.rag.retriever import Retriever
 from src.rag.generator import Generator
+from src.services.index_service import IndexService
 
 
 # --------------------------------------------------
@@ -33,14 +34,17 @@ load_css()
 
 @st.cache_resource
 def load_components():
+
     vector_store = VectorStore()
+
+    if vector_store.is_empty():
+        indexer = IndexService(vector_store)
+        indexer.run()
+
     retriever = Retriever(vector_store)
     generator = Generator()
 
     return retriever, generator
-
-
-retriever, generator = load_components()
 
 
 # --------------------------------------------------
