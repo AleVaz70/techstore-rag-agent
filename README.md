@@ -38,6 +38,25 @@ El proyecto sigue una arquitectura RAG (Retrieval-Augmented Generation):
 4. Gemini genera una respuesta basada exclusivamente en dicho contexto.
 5. La respuesta se muestra junto con los documentos utilizados como referencia.
 
+```text
+Usuario
+   │
+   ▼
+Interfaz Streamlit
+   │
+   ▼
+Retriever
+   │
+   ▼
+ChromaDB
+   │
+   ▼
+Google Gemini
+   │
+   ▼
+Respuesta
+```
+
 ## Estructura del proyecto
 
 ```
