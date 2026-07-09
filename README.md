@@ -17,7 +17,7 @@ Desarrollar un asistente capaz de:
 
 ## Estado del proyecto
 
-Proyecto finalizado. Actualmente disponible para su despliegue y publicación.
+Proyecto finalizado. Listo para su despliegue y publicación.
 
 ## Características
 
@@ -89,13 +89,13 @@ TechStore-RAG/
 1. Clonar el repositorio.
 
 ```bash
-git clone https://github.com/AleVaz70/TechStore-RAG.git
+git clone https://github.com/AleVaz70/techstore-rag-agent.git
 ```
 
 2. Ingresar al proyecto.
 
 ```bash
-cd TechStore-RAG
+cd techstore-rag-agent
 ```
 
 3. Crear un entorno virtual.
