@@ -12,7 +12,7 @@ from src.services.index_service import IndexService
 
 st.set_page_config(
     page_title="TechStore",
-    page_icon="assets/logo.svg",
+    page_icon="📦",
     layout="centered",
 )
 
