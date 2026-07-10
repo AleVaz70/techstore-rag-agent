@@ -17,11 +17,11 @@ Desarrollar un asistente capaz de:
 
 ## Estado del proyecto
 
-Proyecto finalizado. Listo para su despliegue y publicación.
+Proyecto finalizado. Desplegado y listo para su uso.
 
 ## Características
 
-- Lectura automática de documentos PDF y CSV.
+- Lectura automática de documentos PDF.
 - División de documentos en fragmentos (chunking).
 - Búsqueda semántica mediante una base vectorial (ChromaDB).
 - Generación de respuestas utilizando Gemini.
@@ -60,14 +60,18 @@ Respuesta
 ## Estructura del proyecto
 
 ```
-TechStore-RAG/
+techstore-rag-agent/
 │
-├── assets/                 # Estilos e imágenes
-├── data/                   # Documentos de TechStore
+├── assets/
+├── data/
 ├── src/
+│   ├── chunking/
+│   ├── loaders/
+│   ├── models/
+│   ├── processors/
 │   ├── rag/
-│   ├── vectorstore/
-│   └── utils/
+│   ├── services/
+│   └── vectorstore/
 ├── streamlit_app.py
 ├── index_documents.py
 ├── requirements.txt
