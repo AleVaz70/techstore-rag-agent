@@ -42,15 +42,4 @@ class IndexService:
             print(f"Cantidad de chunks: {len(chunks)}")
             print("-" * 60)
 
-        csvs = self.document_loader.get_csv_files()
-
-        print("\n📊 Leyendo archivos CSV...\n")
-
-        for csv in csvs:
-
-            document = self.csv_loader.read_csv(csv)
-
-            print(f"📄 {document.name}")
-            print("-" * 60)
-
-        print("\n✅ Indexación finalizada.")
+        
