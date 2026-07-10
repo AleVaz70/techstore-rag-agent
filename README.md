@@ -152,9 +152,15 @@ Luego abrir el navegador en la dirección indicada por Streamlit (generalmente h
 
 ![Pantalla principal](assets/screenshots/home.png)
 
-### Consulta realizada
+### Ejemplo de consulta y respuesta
 
-![Consulta realizada](assets/screenshots/consulta.png)
+![Ejemplo de consulta y respuesta](assets/screenshots/consulta.png)
+
+## Aplicación desplegada
+
+La aplicación está disponible públicamente en Streamlit Cloud:
+
+https://techstore-rag-vbywcz38vk5a4t6f4mmadr.streamlit.app/
 
 ## Autor
 
