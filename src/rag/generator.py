@@ -66,7 +66,6 @@ Pregunta:
             return response.text
 
         except Exception as error:
-            print("ENTRÉ AL EXCEPT")
             error_message = str(error)
 
             if "RESOURCE_EXHAUSTED" in error_message or "429" in error_message:
@@ -76,7 +75,7 @@ Pregunta:
                     "La API de Gemini no está disponible en este momento porque "
                     "se alcanzó la cuota permitida. Intentá nuevamente más tarde."
                 )
-
+            
             return (
                 "⚠️ **Ocurrió un error al consultar Gemini.**\n\n"
                 "Intentá nuevamente en unos minutos."

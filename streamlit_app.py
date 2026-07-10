@@ -46,7 +46,7 @@ def load_components():
 
     return retriever, generator
 
-
+retriever, generator = load_components()
 # --------------------------------------------------
 # Encabezado
 # --------------------------------------------------
@@ -145,10 +145,13 @@ if consultar or st.session_state.consultar_automatico:
         with st.spinner("Consultando la documentación..."):
 
             try:
+
                 context = retriever.build_context(question)
+
                 answer = generator.generate(question, context)
 
             except Exception:
+
                 answer = (
                     "⚠️ **No fue posible obtener una respuesta en este momento.**\n\n"
                     "Intentá nuevamente más tarde."
@@ -160,8 +163,8 @@ if consultar or st.session_state.consultar_automatico:
 
             with st.container(border=True):
 
-                 st.markdown(f"**Consulta:** {question}")
+                st.markdown(f"**Consulta:** {question}")
 
-                 st.subheader("Respuesta")
+                st.subheader("Respuesta")
 
-                 st.markdown(answer)
+                st.markdown(answer)
